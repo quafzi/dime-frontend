@@ -1,0 +1,36 @@
+{
+  "name": "Dime Frontend",
+  "version": "0.1.0",
+  "description": "Frontend Application for Dime Timetracker",
+  "main": "manage.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": "",
+  "author": "Thomas Birke <tbirke@netextreme.de",
+  "license": "OSL 3.0",
+  "dependencies": {
+    "gleeman": "~0.2.2",
+    "gleeman-express": "~0.2.0",
+    "gleeman-config": "~0.1.0",
+    "gleeman-express-http": "~0.2.0",
+    "gleeman-express-css": "~0.1.1",
+    "lodash": "~1.2.1",
+    "glob": "~3.2.1",
+    "express": "~3.2.2",
+    "async": "~0.2.8",
+    "moment": "~1.7.0",
+    "jade": "~0.30.0",
+    "commander": "~1.1.1",
+    "stylus": "~0.32.1",
+    "sequelize": "~2.0.0-alpha2",
+    "mysql": "~2.0.0-alpha8"
+  },
+  "devDependencies": {
+    "expectjs": "0.0.15",
+    "mocha": "~1.10.0",
+    "expect.js": "~0.2.0",
+    "supertest": "~0.7.0"
+  }
+}
+
