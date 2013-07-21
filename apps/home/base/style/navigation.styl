@@ -1,0 +1,30 @@
+.navbar
+  .magic-input
+    .wizzard
+      display:none
+      ul
+        display:none
+
+    input:focus + .wizzard
+      border-radius: 0 0 15px 15px
+      display:block
+      position:absolute
+      background: #1B1B1B
+      margin-left: 0
+
+      .relation
+        text-align: center
+        padding-right: 1px
+        margin: 0 9px
+
+      .relation:hover
+        ul
+          display:     inline
+          position:    absolute
+          background:  white
+          border:      1px solid #b4b4b4
+          list-style:  none
+          padding:     5px
+          margin-top:  15px
+          margin-left: -12px
+

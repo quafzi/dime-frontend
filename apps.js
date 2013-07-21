@@ -3,8 +3,14 @@ var join = require('path').join;
 module.exports =  {
   appsPath: join(__dirname, 'apps'),
   apps: {
-    page: {
+    home: {
       base: ''
+    },
+    page: {
+      base: '',
+      defaultRenderArgs: '',
+      stylus: '',
+      publicConfig: ''
     },
     angular: {
       lib: '',
@@ -16,8 +22,7 @@ module.exports =  {
     'gleeman-express-http',
     'gleeman-express-css',
     'gleeman-express-js',
-    'gleeman-commander',
-    'gm-angular-templates'
+    'gleeman-commander'
   ]
 };
 

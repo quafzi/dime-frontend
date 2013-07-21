@@ -1,0 +1,107 @@
+extends layout
+
+block content
+  script(type:"text/javascript")
+    var customers
+  .navbar.navbar-fixed-top.navbar-inverse(
+    data-ng-controller='NavigationCtrl'
+  )
+    .navbar-inner
+      .container
+        .row
+          .brand
+            a(href="/") Dime
+          ul.nav.hidden-phone
+            li(
+              data-ng-repeat='item in ["Activities", "Reports", "Settings"]'
+            )
+              a {{item}}
+          .nav.pull-right
+            form.navbar-search.magic-input
+              input.search-query.span4(
+                type="search"
+                placeholder="do something /project :service"
+              )
+              .row.wizzard
+                span.relation.span1.customer
+                  i.icon-user
+                  ul
+                    li(
+                      data-ng-repeat='customer in customers'
+                    ) {{customer.name}}
+                span.relation.span1.project
+                  i.icon-folder-open
+                  ul
+                    li(
+                      data-ng-repeat='project in projects'
+                    ) {{project.name}}
+                span.relation.span1.service
+                  i.icon-cog
+                  ul
+                    li(
+                      data-ng-repeat='service in services'
+                    ) {{service.name}}
+                span.relation.span1.tag
+                  i.icon-tag
+                  ul
+                    li(
+                      data-ng-repeat='tag in tags'
+                    ) {{tag.name}}
+  .container
+    .row
+      .span3.filters.hidden-phone(
+        data-ng-controller='FilterCtrl'
+      )
+        .span3.filter.date
+          i.icon-chevron-left
+          .current
+            i.icon-calendar
+            | heute
+            ul
+              li(
+                data-ng-repeat='range in ["Tag", "Woche", "Monat", "Jahr", "unbegrenzt"]'
+              ) {{range}}
+          i.icon-chevron-right.disabled
+        .span3.filter.search
+          .current
+            i.icon-search
+            input.span2.search-query(type='search')
+        .span3.filter.customer
+          .current
+            i.icon-user
+            | {{filter.customer.name}}
+            ul
+              li(
+                data-ng-repeat='customer in customers'
+              ) {{customer.name}}
+        .span3.filter.project
+          .current
+            i.icon-folder-open
+            | {{filter.project.name}}
+            ul
+              li(
+                data-ng-repeat='project in projects'
+              ) {{project.name}}
+        .span3.filter.service
+          .current
+            i.icon-cog
+            | {{filter.service.name}}
+            ul
+              li(
+                data-ng-repeat='service in services'
+              ) {{service.name}}
+        .span3.filter.tag
+          .current
+            i.icon-tag
+            | {{filter.tag.name}}
+            ul
+              li(
+                data-ng-repeat='tag in tags'
+              ) {{tag.name}}
+      .span9.main
+        | Hauptinhalt
+        block main
+    .row
+      .span12
+        include footer
+

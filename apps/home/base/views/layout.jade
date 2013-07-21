@@ -1,0 +1,23 @@
+doctype 5
+html(ng-app='dime')
+  head
+    block title
+      title=config.title
+    //[if lt IE 9]
+      script(src='/scripts/html5shiv.js')
+    meta(http-equiv='cache-control', content='no-cache')
+    meta(name='robots', content='index, nofollow')
+    block head
+    each style in styles
+      if style.type == 'link'
+        link(href='#{style.requestPath}', rel='stylesheet', type='text/css')
+      else
+        link(href='#{config.style.urlPrefix}#{style.requestPath}', rel='stylesheet', type='text/css')
+  body.start
+    block content
+  each script in scripts
+    if script.type == 'link'
+      script(src='#{script.requestPath}')
+    else
+      script(src='#{config.script.urlPrefix}#{script.requestPath}')
+

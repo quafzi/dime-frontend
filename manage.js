@@ -6,3 +6,4 @@ run([
   function(err) {
     err && console.error(err);
   }
+]);

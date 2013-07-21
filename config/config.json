@@ -1,0 +1,25 @@
+{
+  "env": "development",
+  "server": {
+    "port": 3000
+  },
+  "script": {
+    "urlPrefix":   "/script",
+    "combine":     false,
+    "combineName": "dime.js"
+  },
+  "backend": {
+    "url": "http://dime.dev:8001",
+    "username": "admin",
+    "password": "kitten"
+  },
+  "security": {
+    "cookiePath": "/",
+    "secret":     "<change-me>"
+  },
+  "style": {
+    "urlPrefix":   "/style",
+    "combine":     false,
+    "combineName": "dime.css"
+  }
+}
