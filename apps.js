@@ -12,6 +12,9 @@ module.exports =  {
       stylus: '',
       publicConfig: ''
     },
+    tracking: {
+      base: ''
+    },
     angular: {
       lib: '',
     },
