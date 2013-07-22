@@ -1,5 +1,6 @@
 {
   "env": "development",
+  "title": "Dime",
   "server": {
     "port": 3000
   },

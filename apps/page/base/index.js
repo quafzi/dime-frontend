@@ -40,6 +40,7 @@ module.exports = {
   style: ['gleeman:css:file', 'gleeman:css:link',
     function(done, file, link) {
       link('//fonts.googleapis.com/css?family=Advent+Pro:400,700');
+      link('//fonts.googleapis.com/css?family=Armata:400');
       file(__dirname + '/public/*.css');
       done();
     },

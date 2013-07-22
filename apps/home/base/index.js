@@ -1,24 +1,6 @@
 var _ = require('lodash');
 
 module.exports = {
-  server: [
-    'gleeman:config:base',
-    'gleeman:express:express',
-    'gleeman:express:server',
-    'page:defaultRenderArgs:get',
-    function(done, config, express, expressServer, renderArgs) {
-      server = express();
-
-      server.set('views', __dirname + '/views');
-      server.set('view engine', 'jade');
-      server.get('/', function(req, res) {
-        var args = renderArgs(req);
-        req.lastname = args.lastname;
-        res.render('index', args);
-      });
-      expressServer.use(server);
-      done(null, server);
-  }, 'page:base:server'],
   configRenderArgs: [
     'page:defaultRenderArgs:add',
     'gleeman:config:base',

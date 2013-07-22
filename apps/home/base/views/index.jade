@@ -1,8 +1,6 @@
 extends layout
 
 block content
-  script(type:"text/javascript")
-    var customers
   .navbar.navbar-fixed-top.navbar-inverse(
     data-ng-controller='NavigationCtrl'
   )
@@ -99,7 +97,6 @@ block content
                 data-ng-repeat='tag in tags'
               ) {{tag.name}}
       .span9.main
-        | Hauptinhalt
         block main
     .row
       .span12
