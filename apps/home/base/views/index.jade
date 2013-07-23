@@ -67,35 +67,46 @@ block content
         .span3.filter.customer
           .current
             i.icon-user
-            | {{filter.customer.name}}
+            | {{filter.customer.name && filter.customer.name || "Alle Kunden"}}
             ul
+              li
+                a(data-ng-click='filter.customer=null')
+                  | Alle Kunden
               li(
                 data-ng-repeat='customer in customers'
-              ) {{customer.name}}
+              )
+                a(data-ng-click='filter.customer=customer')
+                  {{customer.name}}
         .span3.filter.project
           .current
             i.icon-folder-open
-            | {{filter.project.name}}
+            | {{filter.project.name && filter.project.name || "Alle Projekte"}}
             ul
               li(
                 data-ng-repeat='project in projects'
-              ) {{project.name}}
+              )
+                a(data-ng-click='filter.project=project')
+                  {{project.name}}
         .span3.filter.service
           .current
             i.icon-cog
-            | {{filter.service.name}}
+            | {{filter.service.name && filter.service.name || "Alle Services"}}
             ul
               li(
                 data-ng-repeat='service in services'
-              ) {{service.name}}
+              )
+                a(data-ng-click='filter.service=service')
+                  {{service.name}}
         .span3.filter.tag
           .current
             i.icon-tag
-            | {{filter.tag.name}}
+            | {{filter.tag.name && filter.tag.name || "Alle Tags"}}
             ul
               li(
                 data-ng-repeat='tag in tags'
-              ) {{tag.name}}
+              )
+                a(data-ng-click='filter.tag=tag')
+                  {{tag.name}}
       .span9.main
         block main
     .row
