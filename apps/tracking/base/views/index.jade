@@ -27,7 +27,7 @@ block main
         )
           .span1
             &nbsp;
-          .span4.date
+          .span5.date
             //| {{ timeslice.duration | formatDuration }}
             | ({{timeslice.started_at | date:'medium' }}
             |  - {{timeslice.stopped_at | date:'medium' }})
