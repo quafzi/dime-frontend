@@ -46,10 +46,11 @@ block content
                       data-ng-repeat='tag in tags'
                     ) {{tag.name}}
   .container
-    .row
-      .span3.filters.hidden-phone(
+    .row(
         data-ng-controller='FilterCtrl'
+        data-ng-init='filter=null'
       )
+      .span3.filters.hidden-phone
         .span3.filter.date
           i.icon-chevron-left
           .current
@@ -64,7 +65,9 @@ block content
           .current
             i.icon-search
             input.span2.search-query(type='search')
-        .span3.filter.customer
+        .span3.filter.customer(
+          data-ng-init='filter.customer=null'
+        )
           .current
             i.icon-user
             | {{filter.customer.name && filter.customer.name || "Alle Kunden"}}
@@ -74,36 +77,55 @@ block content
                   | Alle Kunden
               li(
                 data-ng-repeat='customer in customers'
+                data-ng-model='filter.customer'
               )
                 a(data-ng-click='filter.customer=customer')
                   {{customer.name}}
-        .span3.filter.project
+        .span3.filter.project(
+          data-ng-init='filter.project=null'
+        )
           .current
             i.icon-folder-open
             | {{filter.project.name && filter.project.name || "Alle Projekte"}}
             ul
+              li
+                a(data-ng-click='filter.project=null')
+                  | Alle Projekte
               li(
                 data-ng-repeat='project in projects'
+                data-ng-model='filter.project'
               )
                 a(data-ng-click='filter.project=project')
                   {{project.name}}
-        .span3.filter.service
+        .span3.filter.service(
+          data-ng-init='filter.service=null'
+        )
           .current
             i.icon-cog
             | {{filter.service.name && filter.service.name || "Alle Services"}}
             ul
+              li
+                a(data-ng-click='filter.service=null')
+                  | Alle Services
               li(
                 data-ng-repeat='service in services'
+                data-ng-model='filter.service'
               )
                 a(data-ng-click='filter.service=service')
                   {{service.name}}
-        .span3.filter.tag
+        .span3.filter.tag(
+          data-ng-init='filter.tag=null'
+        )
           .current
             i.icon-tag
             | {{filter.tag.name && filter.tag.name || "Alle Tags"}}
             ul
+              li
+                a(data-ng-click='filter.tag=null')
+                  | Alle Tags
               li(
                 data-ng-repeat='tag in tags'
+                data-ng-model='filter.tag'
               )
                 a(data-ng-click='filter.tag=tag')
                   {{tag.name}}

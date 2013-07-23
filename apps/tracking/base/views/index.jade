@@ -6,7 +6,7 @@ block title
 block main
   ul(data-ng-controller="TrackingCtrl", class="tracking")
     li(
-      data-ng-repeat="activity in activities"
+      data-ng-repeat="activity in activities | filter:applyFilter"
     )
       h4 {{activity.description}}
         span.tags
