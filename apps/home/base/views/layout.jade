@@ -15,6 +15,9 @@ html(ng-app='dime')
         link(href='#{config.style.urlPrefix}#{style.requestPath}', rel='stylesheet', type='text/css')
   body.start
     block content
+    .row
+      .span12
+        include footer
   each script in scripts
     if script.type == 'link'
       script(src='#{script.requestPath}')
