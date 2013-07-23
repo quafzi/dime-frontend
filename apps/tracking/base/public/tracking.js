@@ -4,9 +4,14 @@ function TrackingCtrl($scope, $http) {
   loadData($scope, $http);
 
   $scope.applyFilter = function(activity) {
-    console.log($scope.filter);
     if ('undefined' == typeof($scope.filter)) {
       return true;
+    }
+
+    if ('string' === typeof($scope.filter.search)
+      && -1 === activity.description.indexOf($scope.filter.search)
+    ) {
+      return false;
     }
 
     if ('object' === typeof($scope.filter.customer)

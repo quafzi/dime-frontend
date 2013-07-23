@@ -64,7 +64,10 @@ block content
         .span3.filter.search
           .current
             i.icon-search
-            input.span2.search-query(type='search')
+            input.span2.search-query(
+              type='search',
+              data-ng-model='filter.search'
+            )
         .span3.filter.customer(
           data-ng-init='filter.customer=null'
         )
