@@ -10,12 +10,75 @@ ul.tracking
 
     .timeslices
       display none
+      border-top 1px white solid
+      margin-top 10px
+      padding-top 5px
+
+      li
+        background inherit
+        border none
+
+    .relation
+      overflow hidden
+      cursor pointer
+
+      ul
+        display none
+        position absolute
+        background white
+        border 1px solid #b4b4b4
+        list-style none
+        padding 5px
+        margin-left 16px
+        margin-top -5px
+
+        li
+          border none
+
+        a
+          cursor pointer
+      ul.active
+        display block
+
+      i
+        visibility visible
+
+
+    .sum.running
+      color #44BBFF
+    .sum
+      border 1px solid white
+      font-family Armata
+      font-size 17.5px
+      font-weight bold
+      line-height 20px
+      margin 10px 0
+      padding 2px
+      text-rendering optimizelegibility
+      width 115px
+
+      .action
+        display none
+        margin 3px
 
   li:hover,
   li:focus
-    background #44BBFF
+    color #005580
 
     .timeslices
       display block
-      .date
-        font-family: Armata
+
+    .date,
+    .duration
+      font-family Armata
+
+    .sum
+      background white
+      border 1px #818181 solid
+
+      .action
+        display inline-block
+        color inherit
+    .sum:hover
+      color #44BBFF
+      cursor pointer
