@@ -96,10 +96,3 @@ function FilterCtrl($scope, $http) {
 }
 FilterCtrl.$inject = ['$scope', '$http'];
 
-(function(ng) {
-  var apps = [
-    'tracking:base'
-  ];
-  var module = ng.module('dime', apps);
-}(angular));
-

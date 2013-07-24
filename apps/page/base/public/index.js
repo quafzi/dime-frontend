@@ -1,8 +1,8 @@
 'use strict';
 
 (function(ng) {
-console.log('launch ng')
   var apps = [
+    'tracking:base'
   ];
   var module = ng.module('dime', apps);
 } (angular));
