@@ -16,8 +16,14 @@ module.exports =  {
       base: ''
     },
     angular: {
-      lib: '',
+      lib: ''
     },
+    lodash: {
+      lib: ''
+    },
+    moment: {
+      lib: ''
+    }
   },
   packages: [
     'gleeman-config',
