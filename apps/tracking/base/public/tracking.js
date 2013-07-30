@@ -4,17 +4,17 @@ function TrackingCtrl($scope, $http) {
   loadData($scope, $http);
 
   $scope.applyFilter = function(activity) {
-    if ('undefined' == typeof($scope.filter)) {
+    if (_.isUndefined($scope.filter)) {
       return true;
     }
 
-    if ('string' === typeof($scope.filter.search)
+    if (_.isString($scope.filter.search)
       && -1 === activity.description.indexOf($scope.filter.search)
     ) {
       return false;
     }
 
-    if ('object' === typeof($scope.filter.customer)
+    if (_.isObject($scope.filter.customer)
       && null !== $scope.filter.customer
     ) {
       if (activity.customer.id !== $scope.filter.customer.id) {
@@ -22,7 +22,7 @@ function TrackingCtrl($scope, $http) {
       }
     }
 
-    if ('object' === typeof($scope.filter.project)
+    if (_.isObject($scope.filter.project)
       && null !== $scope.filter.project
     ) {
       if (activity.project.id !== $scope.filter.project.id) {
@@ -30,7 +30,7 @@ function TrackingCtrl($scope, $http) {
       }
     }
 
-    if ('object' === typeof($scope.filter.service)
+    if (_.isObject($scope.filter.service)
       && null !== $scope.filter.service
     ) {
       if (activity.service.id !== $scope.filter.service.id) {
@@ -38,7 +38,7 @@ function TrackingCtrl($scope, $http) {
       }
     }
 
-    if ('object' === typeof($scope.filter.tag)
+    if (_.isObject($scope.filter.tag)
       && null !== $scope.filter.tag
     ) {
       if (activity.tag.id !== $scope.filter.tag.id) {
