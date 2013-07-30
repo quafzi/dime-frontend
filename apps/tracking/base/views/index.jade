@@ -9,8 +9,16 @@ block main
       data-ng-repeat="activity in activities | filter:applyFilter"
       data-ng-controller="ActivityCtrl"
     )
-      .pull-right.duration.sum
-        i.action.icon-play
+      .pull-right.duration.sum(
+        data-ng-click="toggleRunning()"
+        data-ng-class="{ running: isRunning() }"
+      )
+        i.action.icon-play(
+          data-ng-show="!isRunning()"
+        )
+        i.action.icon-stop(
+          data-ng-show="isRunning()"
+        )
         .pull-right {{ activity.timeslices | sumDuration }}
       h4 {{activity.description}}
       span.tags
