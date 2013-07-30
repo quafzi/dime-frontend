@@ -5,7 +5,7 @@ module.exports = {
     'gleeman:express:server',
     'page:defaultRenderArgs:get',
     function(done, config, express, expressServer, renderArgs) {
-      server = express();
+      var server = express();
 
       server.set('views', __dirname + '/views');
       server.set('view engine', 'jade');
