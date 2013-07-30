@@ -53,23 +53,33 @@ FilterCtrl.$inject = ['$scope', '$http'];
 
 function ActivityCtrl($scope, $http) {
   $scope.toggleRunning = function() {
-    timeslices = $scope.activity.timeslices;
     if ($scope.isRunning()) {
-      timeslices[0].stopped_at = new Date();
-      timeslices[0].duration   = 7777;
-      var url = config.backend.url + '/timeslices/' + timeslices[0].id;
-      $http.put(url, timeslices[0]).success(function(timeslice) {
-        $scope.timeslices[0] = timeslice;
+      _.each($scope.activity.timeslices, function(timeslice, offset) {
+        if (_.isNull(timeslice.stopped_at) || _.isUndefined(timeslice.stopped_at)) {
+          timeslice.stopped_at = new Date();
+          // FIXME
+          timeslice.duration   = 7777;
+
+          var url = config.backend.url + '/timeslices/' + timeslice.id;
+          $http.put(url, timeslice).success(function(timeslice, status) {
+            if (200 === status) {
+              $scope.activity.timeslices[offset] = timeslice;
+            } else {
+              console.error(timeslice);
+            }
+          }).error(function (err){
+            console.error(err);
+          })
+        }
       });
     } else {
       var newTimeslice = {
         activity_id: $scope.activity.id,
         started_at:  new Date()
       }
-      console.log(newTimeslice)
       var url = config.backend.url + '/timeslices';
       $http.post(url, newTimeslice).success(function(newTimeslice) {
-        $scope.timeslices.unshift(newTimeslice);
+        $scope.activity.timeslices.unshift(newTimeslice);
       });
     }
   }
