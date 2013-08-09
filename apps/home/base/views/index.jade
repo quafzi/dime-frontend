@@ -1,137 +1,138 @@
 extends layout
 
 block content
-  .navbar.navbar-fixed-top.navbar-inverse(
-    data-ng-controller='NavigationCtrl'
-  )
-    .navbar-inner
-      .container
-        .row
-          .brand
-            a(href="/") Dime
-          ul.nav.hidden-phone
-            li(
-              data-ng-repeat='item in ["Activities", "Reports", "Settings"]'
-            )
-              a {{item}}
-          .nav.pull-right
-            form.navbar-search.magic-input
-              input.search-query.span4(
-                type="search"
-                placeholder="do something /project :service"
-              )
-              .row.wizzard
-                span.relation.span1.customer
-                  i.icon-user
-                  ul
-                    li(
-                      data-ng-repeat='customer in customers'
-                    ) {{customer.name}}
-                span.relation.span1.project
-                  i.icon-folder-open
-                  ul
-                    li(
-                      data-ng-repeat='project in projects'
-                    ) {{project.name}}
-                span.relation.span1.service
-                  i.icon-cog
-                  ul
-                    li(
-                      data-ng-repeat='service in services'
-                    ) {{service.name}}
-                span.relation.span1.tag
-                  i.icon-tag
-                  ul
-                    li(
-                      data-ng-repeat='tag in tags'
-                    ) {{tag.name}}
-  .container
-    .row(
-        data-ng-controller='FilterCtrl'
-        data-ng-init='filter=null'
-      )
-      .span3.filters.hidden-phone
-        .span3.filter.date
-          i.icon-chevron-left
-          .current
-            i.icon-calendar
-            | heute
-            ul
+  .wrapper(data-ng-controller='BaseCtrl')
+    .navbar.navbar-fixed-top.navbar-inverse(
+      data-ng-controller='NavigationCtrl'
+    )
+      .navbar-inner
+        .container
+          .row
+            .brand
+              a(href="/") Dime
+            ul.nav.hidden-phone
               li(
-                data-ng-repeat='range in ["Tag", "Woche", "Monat", "Jahr", "unbegrenzt"]'
-              ) {{range}}
-          i.icon-chevron-right.disabled
-        .span3.filter.search
-          .current
-            i.icon-search
-            input.span2.search-query(
-              type='search',
-              data-ng-model='filter.search'
-            )
-        .span3.filter.customer(
-          data-ng-init='filter.customer=null'
+                data-ng-repeat='item in ["Activities", "Reports", "Settings"]'
+              )
+                a {{item}}
+            .nav.pull-right
+              form.navbar-search.magic-input
+                input.search-query.span4(
+                  type="search"
+                  placeholder="do something /project :service"
+                )
+                .row.wizzard
+                  span.relation.span1.customer
+                    i.icon-user
+                    ul
+                      li(
+                        data-ng-repeat='customer in customers'
+                      ) {{customer.name}}
+                  span.relation.span1.project
+                    i.icon-folder-open
+                    ul
+                      li(
+                        data-ng-repeat='project in projects'
+                      ) {{project.name}}
+                  span.relation.span1.service
+                    i.icon-cog
+                    ul
+                      li(
+                        data-ng-repeat='service in services'
+                      ) {{service.name}}
+                  span.relation.span1.tag
+                    i.icon-tag
+                    ul
+                      li(
+                        data-ng-repeat='tag in tags'
+                      ) {{tag.name}}
+    .container
+      .row(
+          data-ng-controller='FilterCtrl'
+          data-ng-init='filter=null'
         )
-          .current
-            i.icon-user
-            | {{filter.customer.name && filter.customer.name || "Alle Kunden"}}
-            ul
-              li
-                a(data-ng-click='filter.customer=null')
-                  | Alle Kunden
-              li(
-                data-ng-repeat='customer in customers'
-                data-ng-model='filter.customer'
+        .span3.filters.hidden-phone
+          .span3.filter.date
+            i.icon-chevron-left
+            .current
+              i.icon-calendar
+              | heute
+              ul
+                li(
+                  data-ng-repeat='range in ["Tag", "Woche", "Monat", "Jahr", "unbegrenzt"]'
+                ) {{range}}
+            i.icon-chevron-right.disabled
+          .span3.filter.search
+            .current
+              i.icon-search
+              input.span2.search-query(
+                type='search',
+                data-ng-model='filter.search'
               )
-                a(data-ng-click='filter.customer=customer')
-                  {{customer.name}}
-        .span3.filter.project(
-          data-ng-init='filter.project=null'
-        )
-          .current
-            i.icon-folder-open
-            | {{filter.project.name && filter.project.name || "Alle Projekte"}}
-            ul
-              li
-                a(data-ng-click='filter.project=null')
-                  | Alle Projekte
-              li(
-                data-ng-repeat='project in projects'
-                data-ng-model='filter.project'
-              )
-                a(data-ng-click='filter.project=project')
-                  {{project.name}}
-        .span3.filter.service(
-          data-ng-init='filter.service=null'
-        )
-          .current
-            i.icon-cog
-            | {{filter.service.name && filter.service.name || "Alle Services"}}
-            ul
-              li
-                a(data-ng-click='filter.service=null')
-                  | Alle Services
-              li(
-                data-ng-repeat='service in services'
-                data-ng-model='filter.service'
-              )
-                a(data-ng-click='filter.service=service')
-                  {{service.name}}
-        .span3.filter.tag(
-          data-ng-init='filter.tag=null'
-        )
-          .current
-            i.icon-tag
-            | {{filter.tag.name && filter.tag.name || "Alle Tags"}}
-            ul
-              li
-                a(data-ng-click='filter.tag=null')
-                  | Alle Tags
-              li(
-                data-ng-repeat='tag in tags'
-                data-ng-model='filter.tag'
-              )
-                a(data-ng-click='filter.tag=tag')
-                  {{tag.name}}
-      .span9.main
-        block main
+          .span3.filter.customer(
+            data-ng-init='filter.customer=null'
+          )
+            .current
+              i.icon-user
+              | {{filter.customer.name && filter.customer.name || "Alle Kunden"}}
+              ul
+                li
+                  a(data-ng-click='filter.customer=null')
+                    | Alle Kunden
+                li(
+                  data-ng-repeat='customer in customers'
+                  data-ng-model='filter.customer'
+                )
+                  a(data-ng-click='filter.customer=customer')
+                    {{customer.name}}
+          .span3.filter.project(
+            data-ng-init='filter.project=null'
+          )
+            .current
+              i.icon-folder-open
+              | {{filter.project.name && filter.project.name || "Alle Projekte"}}
+              ul
+                li
+                  a(data-ng-click='filter.project=null')
+                    | Alle Projekte
+                li(
+                  data-ng-repeat='project in projects'
+                  data-ng-model='filter.project'
+                )
+                  a(data-ng-click='filter.project=project')
+                    {{project.name}}
+          .span3.filter.service(
+            data-ng-init='filter.service=null'
+          )
+            .current
+              i.icon-cog
+              | {{filter.service.name && filter.service.name || "Alle Services"}}
+              ul
+                li
+                  a(data-ng-click='filter.service=null')
+                    | Alle Services
+                li(
+                  data-ng-repeat='service in services'
+                  data-ng-model='filter.service'
+                )
+                  a(data-ng-click='filter.service=service')
+                    {{service.name}}
+          .span3.filter.tag(
+            data-ng-init='filter.tag=null'
+          )
+            .current
+              i.icon-tag
+              | {{filter.tag.name && filter.tag.name || "Alle Tags"}}
+              ul
+                li
+                  a(data-ng-click='filter.tag=null')
+                    | Alle Tags
+                li(
+                  data-ng-repeat='tag in tags'
+                  data-ng-model='filter.tag'
+                )
+                  a(data-ng-click='filter.tag=tag')
+                    {{tag.name}}
+        .span9.main
+          block main
 

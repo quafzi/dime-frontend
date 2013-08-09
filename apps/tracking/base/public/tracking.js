@@ -1,8 +1,6 @@
 'use strict';
 
 function TrackingCtrl($scope, $http) {
-  loadData($scope, $http);
-
   $scope.applyFilter = function(activity) {
     if (_.isUndefined($scope.filter)) {
       return true;
