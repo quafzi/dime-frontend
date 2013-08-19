@@ -86,13 +86,18 @@ function loadData($scope, $http) {
   });
 }
 
-function NavigationCtrl($scope, $http) {
+function BaseCtrl($scope, $http) {
   loadData($scope, $http);
+}
+BaseCtrl.$inject = ['$scope', '$http'];
+
+function NavigationCtrl($scope, $http) {
+
 }
 NavigationCtrl.$inject = ['$scope', '$http'];
 
 function FilterCtrl($scope, $http) {
-  loadData($scope, $http);
+
 }
 FilterCtrl.$inject = ['$scope', '$http'];
 
