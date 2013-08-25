@@ -50,35 +50,51 @@ function TrackingCtrl($scope, $http) {
 FilterCtrl.$inject = ['$scope', '$http'];
 
 function ActivityCtrl($scope, $http) {
+  $scope.stopRunning = function() {
+    _.each($scope.activity.timeslices, function(timeslice, offset) {
+      if (_.isNull(timeslice.stopped_at) || _.isUndefined(timeslice.stopped_at)) {
+        $scope.stopTimeslice(timeslice, function(err, timeslice) {
+          if (err) {
+            console.error(err);
+          } else {
+            $scope.activity.timeslices[offset] = timeslice;
+          }
+        });
+      }
+    });
+  };
+  $scope.startTimeslice = function() {
+    var timeslice = {
+      activity_id: $scope.activity.id,
+      started_at:  moment().format('YYYY-MM-DD HH:mm:ss')
+    }
+    var url = config.backend.url + '/timeslices';
+    $http.post(url, timeslice).success(function(timeslice) {
+      $scope.activity.timeslices.unshift(timeslice);
+    });
+  };
+  $scope.stopTimeslice = function(timeslice, done) {
+    timeslice.stopped_at = moment().format('YYYY-MM-DD HH:mm:ss');
+    timeslice.duration   = moment(timeslice.stopped_at).diff(moment(timeslice.started_at), 'seconds');
+    $scope.saveTimeslice(timeslice, done);
+  };
+  $scope.saveTimeslice = function(timeslice, done) {
+    var url = config.backend.url + '/timeslices/' + timeslice.id;
+    $http.put(url, timeslice).success(function(timeslice, status) {
+      if (200 === status) {
+        done(null, timeslice);
+      } else {
+        done(status, timeslice);
+      }
+    }).error(function (err){
+      done(err);
+    });
+  };
   $scope.toggleRunning = function() {
     if ($scope.isRunning()) {
-      _.each($scope.activity.timeslices, function(timeslice, offset) {
-        if (_.isNull(timeslice.stopped_at) || _.isUndefined(timeslice.stopped_at)) {
-          timeslice.stopped_at = new Date();
-          // FIXME
-          timeslice.duration   = 7777;
-
-          var url = config.backend.url + '/timeslices/' + timeslice.id;
-          $http.put(url, timeslice).success(function(timeslice, status) {
-            if (200 === status) {
-              $scope.activity.timeslices[offset] = timeslice;
-            } else {
-              console.error(timeslice);
-            }
-          }).error(function (err){
-            console.error(err);
-          })
-        }
-      });
+      $scope.stopRunning();
     } else {
-      var newTimeslice = {
-        activity_id: $scope.activity.id,
-        started_at:  new Date()
-      }
-      var url = config.backend.url + '/timeslices';
-      $http.post(url, newTimeslice).success(function(newTimeslice) {
-        $scope.activity.timeslices.unshift(newTimeslice);
-      });
+      $scope.startTimeslice();
     }
   }
 
