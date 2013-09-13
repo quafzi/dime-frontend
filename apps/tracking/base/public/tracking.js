@@ -111,6 +111,21 @@ ActivityCtrl.$inject = ['$scope', '$http'];
 (function(ng) {
   var NS = 'tracking:base';
   var module = ng.module(NS, []);
+  function formatDuration(seconds) {
+    function twoDigits(value) {
+      return (value.toString().length==1) ? '0'+value : value;
+    }
+    var duration = moment.duration(seconds, 'seconds');
+    var hours = twoDigits(Math.floor(duration.asHours()));
+    var minutes = twoDigits(duration.minutes());
+    var seconds = twoDigits(duration.seconds());
+    return [hours, minutes, seconds].join(':');
+  }
+  module.filter('formatDuration', function() {
+    return function(seconds) {
+      return formatDuration(seconds);
+    }
+  });
   module.filter('formatHours', function() {
     return function(seconds) {
       return Math.round(
@@ -124,22 +139,7 @@ ActivityCtrl.$inject = ['$scope', '$http'];
       _.each(timeslices, function(timeslice) {
         duration += timeslice.duration;
       })
-      duration = moment.duration(duration, 'seconds');
-      var hours = Math.floor(duration.asHours()),
-          minute = duration.minutes(),
-          second = duration.seconds();
-
-      if (hours<10) {
-          hours = '0' + hours;
-      }
-      if (minute<10) {
-          minute = '0' + minute;
-      }
-      if (second<10) {
-          second = '0' + second;
-      }
-
-      return [hours, minute, second].join(':');
+      return formatDuration(duration);
     }
   });
 }(angular));
