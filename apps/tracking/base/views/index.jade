@@ -13,12 +13,12 @@ block main
         data-ng-click="toggleRunning()"
         data-ng-class="{ running: isRunning() }"
       )
-        i.action.icon-play(
+        .action.span(
           data-ng-show="!isRunning()"
-        )
-        i.action.icon-stop(
+        ) &#x25B6;
+        .action.span(
           data-ng-show="isRunning()"
-        )
+        ) &#x25FE;
         .pull-right {{ activity.timeslices | sumDuration }}
       h4 {{activity.description}}
       span.tags
@@ -75,14 +75,20 @@ block main
               )
                 a(data-ng-click='activity.service=service')
                   {{service.name}}
-      ul.timeslices
+          .span1.relation(
+            data-ng-click="showTimeSlices = !showTimeSlices"
+          )
+            .icon-list(title='Show timeslices')
+      ul.timeslices(data-ng-show="showTimeSlices")
         li(
-          data-ng-repeat="timeslice in activity.timeslices"
+          data-ng-repeat="timeslice in activity.timeslices | orderBy:'-stopped_at':'false'"
         )
-          .span1.duration
-            | {{ timeslice.duration | formatHours }} h
-          .span5.date
-            | ({{timeslice.started_at | date:'medium' }}
-            |  - {{timeslice.stopped_at | date:'medium' }})
-          .span1
-            i.icon-remove(data-ng-click="timeslice.del")
+          .row
+            .span2.duration
+              | {{ timeslice.duration | formatDuration }} h
+            .span5.date
+              | ({{timeslice.started_at | date:'medium' }}
+              |  - {{timeslice.stopped_at | date:'medium' }})
+            .span1
+              a(href="", data-ng-click="alert('Not yet implemented')")
+                i.icon-remove(data-ng-click="timeslice.del")

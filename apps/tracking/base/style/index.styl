@@ -7,12 +7,15 @@ ul.tracking
     border 1px #818181 solid
     margin-bottom 1px
     padding 0 10px
+    list-style none
+    margin-left -16px
 
     .timeslices
-      display none
       border-top 1px white solid
       margin-top 10px
+      overflow hidden
       padding-top 5px
+      padding-left 10px
 
       li
         background inherit
@@ -49,7 +52,7 @@ ul.tracking
 
 
     .sum
-      border 1px solid none
+      border 1px solid transparent
       font-family Armata
       font-size 17.5px
       font-weight bold
@@ -61,16 +64,13 @@ ul.tracking
 
       .action
         display none
-        margin 3px
+        margin -2px 0 0 5px
       &.running
         color #44BBFF
 
     &:hover,
     &:focus
       color #005580
-
-      .timeslices
-        display block
 
       .sum
         background white
