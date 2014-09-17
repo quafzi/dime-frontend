@@ -41,7 +41,6 @@ module.exports = {
     function(done, file, link) {
       link('//fonts.googleapis.com/css?family=Advent+Pro:400,700');
       link('//fonts.googleapis.com/css?family=Armata:400');
-      link('//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css');
       file(__dirname + '/public/*.css');
       done();
     },

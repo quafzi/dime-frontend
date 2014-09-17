@@ -18,6 +18,10 @@ ul.tracking
         background inherit
         border none
 
+      .date,
+      .duration
+        font-family Armata
+
     .relation
       overflow hidden
       cursor pointer
@@ -44,8 +48,6 @@ ul.tracking
         visibility visible
 
 
-    .sum.running
-      color #44BBFF
     .sum
       border 1px solid none
       font-family Armata
@@ -60,25 +62,23 @@ ul.tracking
       .action
         display none
         margin 3px
+      &.running
+        color #44BBFF
 
-  li:hover,
-  li:focus
-    color #005580
+    &:hover,
+    &:focus
+      color #005580
 
-    .timeslices
-      display block
+      .timeslices
+        display block
 
-    .date,
-    .duration
-      font-family Armata
+      .sum
+        background white
+        border 1px #818181 solid
 
-    .sum
-      background white
-      border 1px #818181 solid
-
-      .action
-        display inline-block
-        color inherit
-    .sum:hover
-      color #44BBFF
-      cursor pointer
+        .action
+          display inline-block
+          color inherit
+      .sum:hover
+        color #44BBFF
+        cursor pointer
