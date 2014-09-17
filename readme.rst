@@ -12,6 +12,8 @@ You'll need a Dime Server (either original Dime_ or `Dime for Node.js`_) for run
 
 .. _`Dime for Node.js`: https://github.com/quafzi/dime-node
 
+Clone this repo, make a copy of `config/config.json.dist` named `config/config.json` and adjust the values in there.
+
 Usage
 -----
 
